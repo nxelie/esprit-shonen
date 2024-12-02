@@ -75,11 +75,24 @@
             opacity: 0;
         }
 
-        .content-section {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 100px 5%;
+       .content-section {
+    position: relative;
+    padding: 50px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
+
+.animated-image {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease-in-out;
+}
+
+.image-container img.active {
+    opacity: 1;
+    transform: translateY(0);
+}
         }
 
         .content-section .text-content {
@@ -191,14 +204,18 @@
         </div>
     </section>
 
-    <!-- Nouvelle section texte et image -->
-    <section class="content-section">
-        <div class="text-content">
-            <h2>INFINITE SKIES</h2>
-            <p>Infinite Skies is an immersive space exploration game blending stunning visuals, VR/AR technology, and emotional storytelling. Players navigate galaxies, solve mysteries, and forge connections, reflecting on humanity's place in the cosmos.</p>
-        </div>
-        <img src="images/Into the Infinite Skies (1).png" alt="Into the Infinite Skies">
-    </section>
+<section class="content-section" id="infinite-skies-section">
+    <div class="text-content">
+        <h2>INFINITE SKIES</h2>
+        <p>
+            Infinite Skies is an immersive space exploration game blending stunning visuals, VR/AR technology, and emotional storytelling. 
+            Players navigate galaxies, solve mysteries, and forge connections, reflecting on humanity's place in the cosmos.
+        </p>
+    </div>
+    <div class="image-container">
+        <img src="images/Into the Infinite Skies (1).png" alt="Into the Infinite Skies" class="animated-image">
+    </div>
+</section>
 
    <!-- Section vidéo Go Further -->
 <section class="video-content">
@@ -221,5 +238,15 @@
             <p>Infinite Skies is a cutting-edge immersive experience that blends VR, AR, and 4DX effects to simulate space exploration. From liftoff to interstellar missions, participants engage in interactive adventures that educate and inspire, making the dream of space travel accessible and unforgettable.</p>
         </div>
     </section>
+    window.addEventListener('scroll', () => {
+    const section = document.getElementById('infinite-skies-section');
+    const image = document.querySelector('.animated-image');
+    const sectionTop = section.getBoundingClientRect().top;
+    const triggerPoint = window.innerHeight * 0.8; // 20% before full view
+
+    if (sectionTop < triggerPoint) {
+        image.classList.add('active');
+    }
+});
 </body>
 </html>
